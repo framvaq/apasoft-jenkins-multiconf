@@ -20,25 +20,25 @@ pipeline {
             values 'chrome', 'edge', 'firefox'
           }
         }
-      }
 
-      agent {
-        label "${OS}"
-      }
-
-      stages {
-        stage('Prepare') {
-          steps {
-            echo "Preparing browser ${BROWSER} on ${OS}"
-          }
+        agent {
+          label "${OS}"
         }
-
-        stage('Run') {
-          steps {
-            echo "Running ${BROWSER} on ${OS}"
+  
+        stages {
+          stage('Prepare') {
+            steps {
+              echo "Preparing browser ${BROWSER} on ${OS}"
+            }
           }
-        }
-      }
-    }
-  }
+  
+          stage('Run') {
+            steps {
+              echo "Running ${BROWSER} on ${OS}"
+            }
+          }
+        } // stages
+      } // matrix
+    } // stage
+  } // stages
 }
